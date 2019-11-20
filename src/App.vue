@@ -18,10 +18,20 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  padding: 5% 20%;
 
   & .brand {
     text-align: center;
+    & img {
+      max-width: 80%;
+      height: auto;
+      width: auto;
+    }
+  }
+}
+
+@media (min-width: 800px) {
+  #app {
+    margin: 5% 20%;
   }
 }
 #nav {
@@ -31,7 +41,7 @@
     font-weight: bold;
     color: #2c3e50;
     &.router-link-exact-active {
-      color: #42b983;
+      color: #40a9ff;
     }
   }
 }
