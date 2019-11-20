@@ -1,33 +1,43 @@
 <template>
     <div class="home">
-        <a-form>
-            <a-form-item label="Idade">
-                <a-input v-model="model.idade" type="number"></a-input>
-            </a-form-item>
-            <a-form-item label="Sexo">
-                <a-radio-group v-model="model.sexo">
-                    <a-radio-button :value="Sexo.Masculino">Masculino</a-radio-button>
-                    <a-radio-button :value="Sexo.Feminino">Feminino</a-radio-button>
-                </a-radio-group>
-            </a-form-item>
-            <a-button type="primary" @click="calcular()">
-                Calcular
-            </a-button>
-        </a-form>
-        <div v-if="calculado">
-            <div :key="PEPrevisto">O valor de <strong>PE máximo previsto</strong> é de {{PEPrevisto}}.</div>
-            <div :key="PIPrevisto">O valor de <strong>PI máximo previsto</strong> é de {{PIPrevisto}}.</div>
-
-            <a-input v-model="PECalculado" type="number"></a-input>
-            <a-input v-model="PICalculado" type="number"></a-input>
-            <a-button type="primary" @click="proporcaoCalculada = true">
-                Calcular Proporção
-            </a-button>
-        </div>
-        <div v-if="proporcaoCalculada">
-            <div>PE Calclado: {{PECalculado * 100 / PEPrevisto}}% do PE Previsto</div>
-            <div>PI Calclado: {{PICalculado * 100 / PIPrevisto}}% do PI Previsto</div>
-        </div>
+        <a-card title="Informações básicas">
+            <a-form>
+                <a-form-item label="Idade">
+                    <a-input v-model="model.idade" type="number"></a-input>
+                </a-form-item>
+                <a-form-item label="Sexo">
+                    <a-radio-group v-model="model.sexo">
+                        <a-radio-button :value="Sexo.Masculino">Masculino</a-radio-button>
+                        <a-radio-button :value="Sexo.Feminino">Feminino</a-radio-button>
+                    </a-radio-group>
+                </a-form-item>
+                <a-button type="primary" :disabled="model.idade <= 0 || !model.sexo " @click="calcular()">
+                    Calcular
+                </a-button>
+            </a-form>
+        </a-card>
+        <a-card v-if="calculado" title="Valores Previstos">
+            <h4 :key="PEPrevisto">O valor de <strong>PE máximo previsto</strong> é de {{(PEPrevisto).toFixed(2)}} CmH2O.</h4>
+            <h4 :key="PIPrevisto">O valor de <strong>PI máximo previsto</strong> é de -{{(Math.abs(PIPrevisto)).toFixed(2)}} CmH2O.</h4>
+        </a-card>
+        <a-card v-if="calculado" title="Valores Calculados">
+            <a-form>
+                <a-form-item label="PE Calculado">
+                    <a-input v-model="PECalculado" type="number"></a-input>
+                </a-form-item>
+                <a-form-item label="PI Calculado">
+                    <a-input v-model="PICalculado" type="number"></a-input>
+                </a-form-item>
+                <a-button :disabled="PECalculado <= 0 || PICalculado <= 0" type="primary"
+                          @click="exibirProporcao = true">
+                    Calcular Proporção
+                </a-button>
+            </a-form>
+        </a-card>
+        <a-card v-if="exibirProporcao" title="Calculado x Previsto">
+            <h4><strong>PE Calculado:</strong> {{(PECalculado * 100 / PEPrevisto).toFixed(2)}}% do PE Previsto</h4>
+            <h4><strong>PI Calcluado:</strong> {{(PICalculado * 100 / PIPrevisto).toFixed(2)}}% do PI Previsto</h4>
+        </a-card>
     </div>
 </template>
 
@@ -45,7 +55,7 @@
     private Sexo = Sexo;
     private model: Individuo = new Individuo();
     private calculado: boolean = false;
-    private proporcaoCalculada: boolean = false;
+    private exibirProporcao: boolean = false;
     private PEPrevisto: number | null = null;
     private PIPrevisto: number | null = null;
     private PECalculado: number | null = null;
@@ -77,4 +87,7 @@
 </script>
 
 <style lang="scss">
+    .ant-card {
+        margin: 20px;
+    }
 </style>
