@@ -6,7 +6,7 @@ Application URL: https://kevencarneiro.github.io/pepix-helper/
 
 Este aplicativo tem como função cálculo da Pressão Inspiratória Máxima (PIMax), Pressão Expiratória Maxima (PEMax) e porcentagem de força muscular das pressões respiratórias máxima de pacientes adultos do sexo feminino e masculino, utilizando informações como idade, sexo e o valor do teste obtido pelo Fisioterapeuta e contando com fórmulas descritas na literatura de Neder (1999).
 ***
-This application has the function of calculating the Maximum Inspiratory Pressure, Maximum Expiratory Pressure and percentage of muscle strength of maximal respiratory pressures in adult sex patients female and male, using information such as age, sex and the value of the test obtained by the Physiotherapist and relying on formulas described in Neder's literature (1999).
+This application has the function of calculating the Maximum Inspiratory Pressure, Maximum Expiratory Pressure and percentage of muscle strength of maximal respiratory pressures in female and male adult patients, using information such as age, sex and the value of the test obtained by the Physiotherapist and relying on formulas described in Neder's literature (1999).
 
 Please note that at this moment this application is avaliable only in Portuguese
 
